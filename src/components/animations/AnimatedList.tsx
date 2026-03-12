@@ -163,7 +163,7 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
           >
             <div
               className={`p-4 bg-black/70 backdrop-blur-sm border border-gray-800/50 rounded-lg transition-all duration-200 hover:bg-black/90 hover:shadow-lg ${
-                selectedIndex === index ? "ring-2 ring-indigo-400 bg-black/95 shadow-xl" : ""
+                selectedIndex === index ? "ring-2 ring-sky-400 bg-black/95 shadow-xl" : ""
               } ${itemClassName}`}
             >
               <p className="text-white m-0 font-medium break-words">{item}</p>

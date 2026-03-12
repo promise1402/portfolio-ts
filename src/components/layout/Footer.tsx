@@ -1,3 +1,10 @@
+import {
+  GitHubSocialIcon,
+  LinkedInSocialIcon,
+  MailSocialIcon,
+  getSocialButtonThemeClassName,
+} from "@/components/layout/SocialIcons";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -7,28 +14,31 @@ const Footer = () => {
         <p className="text-sm text-gray-500">
           &copy; {currentYear} Promise Pal. All rights reserved.
         </p>
-        <div className="flex items-center gap-4 text-sm text-gray-500">
+        <div className="flex items-center gap-3 text-sm text-gray-500">
           <a
             href="https://www.linkedin.com/in/promise-pal-499b83216/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-900 transition-colors"
+            aria-label="LinkedIn"
+            className={`group inline-flex h-10 w-10 items-center justify-center rounded-full border bg-white/90 shadow-[0_10px_18px_-14px_rgba(15,23,42,0.35)] transition-all duration-300 ${getSocialButtonThemeClassName("linkedin")}`}
           >
-            LinkedIn
+            <LinkedInSocialIcon className="h-4 w-4" />
           </a>
           <a
             href="https://github.com/promise1402"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-900 transition-colors"
+            aria-label="GitHub"
+            className={`group inline-flex h-10 w-10 items-center justify-center rounded-full border bg-white/90 shadow-[0_10px_18px_-14px_rgba(15,23,42,0.35)] transition-all duration-300 ${getSocialButtonThemeClassName("github")}`}
           >
-            GitHub
+            <GitHubSocialIcon className="h-4 w-4" />
           </a>
           <a
             href="mailto:promisepal1509@gmail.com"
-            className="hover:text-gray-900 transition-colors"
+            aria-label="Email"
+            className={`group inline-flex h-10 w-10 items-center justify-center rounded-full border bg-white/90 shadow-[0_10px_18px_-14px_rgba(15,23,42,0.35)] transition-all duration-300 ${getSocialButtonThemeClassName("mail")}`}
           >
-            Email
+            <MailSocialIcon className="h-4 w-4" />
           </a>
         </div>
       </div>

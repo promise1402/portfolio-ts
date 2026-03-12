@@ -62,7 +62,7 @@ const Education = () => {
 
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-3 flex-wrap">
-                      <Badge className="w-fit bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-100 rounded-full px-4 py-1.5 text-sm font-medium">
+                      <Badge className="w-full whitespace-normal break-words rounded-2xl border border-indigo-100 bg-indigo-50 px-4 py-1.5 text-center text-sm font-medium leading-relaxed text-indigo-700 hover:bg-indigo-100 sm:w-fit sm:rounded-full">
                         {item.degree}
                       </Badge>
                       <Badge className="w-fit bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-100 rounded-full px-4 py-1.5 text-sm font-medium">

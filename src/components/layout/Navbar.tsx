@@ -1,5 +1,10 @@
-import { Github, Linkedin, Mail } from "lucide-react";
 import { StaggeredMenu } from "@/components/animations";
+import {
+  GitHubSocialIcon,
+  LinkedInSocialIcon,
+  MailSocialIcon,
+  type SocialTheme,
+} from "@/components/layout/SocialIcons";
 
 const menuItems = [
   { label: "Home", ariaLabel: "Go to home section", link: "#home" },
@@ -20,17 +25,20 @@ const socialItems = [
   {
     label: "GitHub",
     link: "https://github.com/promise1402",
-    icon: Github,
+    icon: GitHubSocialIcon,
+    theme: "github" as SocialTheme,
   },
   {
     label: "LinkedIn",
     link: "https://www.linkedin.com/in/promise-pal-499b83216/",
-    icon: Linkedin,
+    icon: LinkedInSocialIcon,
+    theme: "linkedin" as SocialTheme,
   },
   {
     label: "Email",
     link: "mailto:promisepal1509@gmail.com",
-    icon: Mail,
+    icon: MailSocialIcon,
+    theme: "mail" as SocialTheme,
   },
 ];
 
@@ -41,14 +49,15 @@ const Navbar = () => {
       items={menuItems}
       socialItems={socialItems}
       displaySocials
-      displayItemNumbering
+      displayItemNumbering={false}
       menuButtonColor="#0f172a"
       openMenuButtonColor="#0f172a"
       changeMenuColorOnOpen
-      colors={["#e0f2fe", "#4f46e5"]}
-      accentColor="#4f46e5"
+      colors={["#ecfeff", "#22d3ee"]}
+      accentColor="#0284c7"
       isFixed
       closeOnClickAway
+      closeOnItemClickOnMobile
     />
   );
 };

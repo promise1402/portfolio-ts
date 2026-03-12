@@ -9,7 +9,7 @@ export const certifications: Certification[] = [
   {
     title: "Software Development Internship",
     issuer: "One Place Solar",
-    date: "January 2025",
+    date: "Jan 2025",
     link: "https://drive.google.com/file/d/1kZaEEGNAPNdNPZEHQ7du_m9-TnSqWGQ0/view?usp=sharing",
   },
   {

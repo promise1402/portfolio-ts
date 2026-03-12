@@ -112,7 +112,7 @@ const Contact = () => {
                   className="inline-flex items-center gap-3 hover:text-indigo-600 transition-colors break-all"
                 >
                   <Mail className="w-4 h-4 text-indigo-500 shrink-0" />
-                  <span className="font-medium">Email</span>
+                  <span className="hidden sm:inline font-medium">Email</span>
                   <span className="truncate">promisepal1509@gmail.com</span>
                 </a>
                 <a
@@ -120,7 +120,7 @@ const Contact = () => {
                   className="inline-flex items-center gap-3 hover:text-indigo-600 transition-colors"
                 >
                   <Phone className="w-4 h-4 text-indigo-500 shrink-0" />
-                  <span className="font-medium">Phone</span>
+                  <span className="hidden sm:inline font-medium">Phone</span>
                   <span>+91-7080720508</span>
                 </a>
                 <a
@@ -130,7 +130,7 @@ const Contact = () => {
                   className="inline-flex items-center gap-3 hover:text-indigo-600 transition-colors break-all"
                 >
                   <Linkedin className="w-4 h-4 text-indigo-500 shrink-0" />
-                  <span className="font-medium">LinkedIn</span>
+                  <span className="hidden sm:inline font-medium">LinkedIn</span>
                   <span>/in/promise-pal-499b83216</span>
                 </a>
                 <a
@@ -140,7 +140,7 @@ const Contact = () => {
                   className="inline-flex items-center gap-3 hover:text-indigo-600 transition-colors"
                 >
                   <Github className="w-4 h-4 text-indigo-500 shrink-0" />
-                  <span className="font-medium">GitHub</span>
+                  <span className="hidden sm:inline font-medium">GitHub</span>
                   <span>@promise1402</span>
                 </a>
               </div>

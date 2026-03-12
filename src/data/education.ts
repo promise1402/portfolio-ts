@@ -10,12 +10,12 @@ export type EducationItem = {
 export const education: EducationItem[] = [
   {
     institution: "Raj Kumar Goel Institute of Technology",
-    location: "Ghaziabad, Uttar Pradesh",
-    dateRange: "Jul 2019 - Jun 2023",
-    degree: "Bachelor of Technology - (CSE)",
+    location: "Ghaziabad",
+    dateRange: "July 2019 - June 2023",
+    degree: "Bachelor of Technology - Computer Science",
     scoreLabel: "GPA: 8.1",
     description:
-      "During my undergraduate studies, I gained a strong foundation in computer science principles and programming languages. I also participated in coding competitions and projects that enhanced my practical skills.",
+      "During my undergraduate studies, I gained a strong foundation in computer science principles and programming languages. I also participated in various coding competitions and projects that enhanced my practical skills.",
   },
   {
     institution: "RPM Academy",

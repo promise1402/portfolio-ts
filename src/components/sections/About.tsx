@@ -1,6 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-
 const About = () => {
   return (
     <section
@@ -20,41 +17,31 @@ const About = () => {
           </div>
 
           <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-600">
-            I am a passionate software developer with a strong focus on frontend development and a solid foundation in
-            computer science. I completed my Bachelor&apos;s in Computer Science from Raj Kumar Goel Institute of
-            Technology in 2023 with a GPA of 8.1, where I built my base in core CS concepts and problem-solving.
+            Recently, I worked as a{" "}
+            <span className="font-semibold text-gray-900">Software Development Engineer Intern at One Place Solar</span>,
+            where I helped build <span className="font-semibold text-gray-900">internal tools and a CRM system</span>,
+            gaining hands-on experience with real-world product development.
           </p>
 
           <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-600">
-            My toolkit includes{" "}
-            <span className="font-semibold text-gray-900">TypeScript, JavaScript, React, Node, Express, and Redux</span>,
-            along with modern UI systems like Tailwind, Material UI, and Shadcn-inspired components. I enjoy creating
-            responsive, accessible interfaces that feel clean and intuitive to use.
+            I graduated with a <span className="font-semibold text-gray-900">B.Tech in Computer Science</span> from{" "}
+            <span className="font-semibold text-gray-900">Raj Kumar Goel Institute of Technology</span> with a{" "}
+            <span className="font-semibold text-gray-900">GPA of 8.1</span>, which gave me a strong foundation in
+            computer science and problem-solving.
           </p>
 
           <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-600">
-            Currently, I am working as a Software Development Engineer Intern at One Place Solar, building an in-house
-            CRM and internal tools from scratch. That experience has helped me understand how design decisions, APIs,
-            and UX come together in real products.
+            My core stack includes{" "}
+            <span className="font-semibold text-gray-900">React, TypeScript, Redux, Node.js, and Express</span>, and I
+            enjoy building <span className="font-semibold text-gray-900">scalable, responsive, and user-friendly web applications</span>{" "}
+            with clean UI and solid backend integration.
           </p>
 
-          <Card className="shadow-none border border-gray-200 rounded-2xl bg-white/80 backdrop-blur">
-            <CardContent className="pt-6 pb-6 px-5 sm:px-6 flex flex-col gap-3">
-              <Badge className="w-fit bg-emerald-50 text-emerald-700 hover:bg-emerald-50 rounded-full px-4 py-1.5 text-xs font-medium">
-                Open to new opportunities
-              </Badge>
-              <p className="text-sm md:text-base leading-relaxed text-gray-600">
-                I am actively exploring roles in frontend and full-stack development where I can contribute to
-                real-world products, collaborate with strong teams, and keep growing as an engineer.
-              </p>
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-full bg-gray-900 text-white px-5 py-2 text-sm font-medium w-fit hover:bg-gray-800 transition-colors"
-              >
-                Get in touch
-              </a>
-            </CardContent>
-          </Card>
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-600">
+            I&apos;m continuously improving my problem-solving skills and staying current with modern technologies, and
+            I&apos;m actively seeking <span className="font-semibold text-gray-900">Frontend or Full-Stack Developer</span>{" "}
+            opportunities where I can contribute and grow.
+          </p>
         </div>
       </div>
     </section>
