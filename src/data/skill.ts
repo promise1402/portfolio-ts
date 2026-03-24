@@ -1,46 +1,44 @@
 export type SkillCategory = {
-  id: number
-  title: string
-  skills: string[]
-}
+  id: number;
+  title: string;
+  skills: string[];
+};
 
 export const skills: SkillCategory[] = [
   {
     id: 1,
-    title: 'Languages',
-    skills: ['JavaScript', 'TypeScript', 'SQL'],
+    title: "Languages",
+    skills: ["JavaScript", "TypeScript", "SQL"],
   },
   {
     id: 2,
-    title: 'Frontend',
-    skills: [
-      'React.js',
-      'Redux',
-      'Material UI',
-      'Tailwind CSS',
-      'Bootstrap',
-    ],
+    title: "Frontend",
+    skills: ["React.js", "Redux", "Shadcn UI", "Tailwind CSS", "Bootstrap"],
   },
   {
     id: 3,
-    title: 'Backend',
+    title: "Backend",
     skills: [
-      'Node.js',
-      'Express.js',
-      'REST APIs',
-      'Authentication (JWT, bcrypt)',
-      'Middleware',
-      'MVC Architecture',
+      "Node.js",
+      "REST APIs",
+      "Authentication",
+      "Middleware",
+      "MVC Architecture",
     ],
   },
   {
     id: 4,
-    title: 'Databases',
-    skills: ['MongoDB'],
+    title: "Frameworks",
+    skills: ["Next.js", "Express.js"],
   },
   {
     id: 5,
-    title: 'Tools',
-    skills: ['Git', 'GitHub', 'Postman', 'Mongoose'],
+    title: "Databases",
+    skills: ["MongoDB"],
   },
-]
+  {
+    id: 6,
+    title: "Tools",
+    skills: ["Git", "GitHub", "Postman", "Mongoose"],
+  },
+];

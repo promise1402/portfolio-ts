@@ -50,7 +50,7 @@ const Experience = () => {
               <div className="w-full h-px bg-gray-100" />
 
               <div className="flex flex-col gap-4">
-                <Badge className="w-fit bg-indigo-50 text-indigo-600 hover:bg-indigo-50 rounded-full px-4 py-1.5 text-sm font-medium">
+                <Badge className="w-full whitespace-normal break-words rounded-2xl bg-indigo-50 px-4 py-1.5 text-center text-sm font-medium leading-relaxed text-indigo-600 hover:bg-indigo-50 sm:w-fit sm:rounded-full">
                   {experience.role}
                 </Badge>
 

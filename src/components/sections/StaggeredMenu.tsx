@@ -1,5 +1,6 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { getSocialButtonThemeClassName, type SocialTheme } from "@/components/layout/SocialIcons";
 
 export interface StaggeredMenuItem {
   label: string;
@@ -9,6 +10,7 @@ export interface StaggeredMenuItem {
 export interface StaggeredMenuSocialItem {
   label: string;
   link: string;
+  theme?: SocialTheme;
   // Optional React icon component for richer display
   icon?: React.ComponentType<{ className?: string }>;
 }
@@ -29,11 +31,12 @@ export interface StaggeredMenuProps {
   closeOnClickAway?: boolean;
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
+  closeOnItemClickOnMobile?: boolean;
 }
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   position = 'right',
-  colors = ['#B19EEF', '#5227FF'],
+  colors = ['#ecfeff', '#22d3ee'],
   items = [],
   socialItems = [],
   displaySocials = true,
@@ -42,11 +45,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   menuButtonColor = '#fff',
   openMenuButtonColor = '#fff',
   changeMenuColorOnOpen = true,
-  accentColor = '#5227FF',
+  accentColor = '#0284c7',
   isFixed = false,
   closeOnClickAway = true,
   onMenuOpen,
-  onMenuClose
+  onMenuClose,
+  closeOnItemClickOnMobile = false,
 }: StaggeredMenuProps) => {
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
@@ -359,6 +363,14 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     }
   }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
 
+  const handleItemClick = useCallback(() => {
+    if (!closeOnItemClickOnMobile || typeof window === "undefined") return;
+
+    if (window.matchMedia("(max-width: 1023px)").matches) {
+      closeMenu();
+    }
+  }, [closeMenu, closeOnItemClickOnMobile]);
+
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
 
@@ -418,7 +430,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           aria-label="Main navigation header"
         >
           <div className="sm-logo flex items-center select-none pointer-events-auto" aria-label="Logo">
-            <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-indigo-600 text-white text-sm font-semibold shadow-sm">
+            <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-sky-500 text-white text-sm font-semibold shadow-[0_18px_42px_-18px_rgba(14,165,233,0.75),0_8px_18px_-12px_rgba(15,23,42,0.28)]">
               PP
             </div>
           </div>
@@ -449,7 +461,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
             <span
               ref={iconRef}
-              className="sm-icon relative w-[14px] h-[14px] shrink-0 inline-flex items-center justify-center [will-change:transform]"
+              className="sm-icon relative w-[14px] h-[14px] shrink-0 inline-flex items-center justify-center drop-shadow-[0_6px_10px_rgba(15,23,42,0.18)] [will-change:transform]"
               aria-hidden="true"
             >
               <span
@@ -489,6 +501,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                       href={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
+                      onClick={handleItemClick}
                     >
                       <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                         {it.label}
@@ -522,10 +535,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                           href={s.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="sm-socials-link text-[1.1rem] font-medium text-[#111] no-underline relative inline-flex items-center gap-2 py-[2px] transition-[color,opacity] duration-300 ease-linear"
+                          aria-label={s.label}
+                          className={`sm-socials-link group inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/90 shadow-[0_10px_18px_-14px_rgba(15,23,42,0.35)] transition-all duration-300 ${getSocialButtonThemeClassName(s.theme ?? "github")}`}
                         >
                           {Icon && (
-                            <Icon className="w-6 h-6 text-[#111]" />
+                            <Icon className="h-5 w-5" />
                           )}
                         </a>
                       </li>
@@ -563,14 +577,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-socials { margin-top: auto; padding-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
 .sm-scope .sm-socials-title { margin: 0; font-size: 1rem; font-weight: 500; color: var(--sm-accent, #ff0000); }
 .sm-scope .sm-socials-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: row; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.sm-scope .sm-socials-list .sm-socials-link { opacity: 1; transition: opacity 0.3s ease; }
-.sm-scope .sm-socials-list:hover .sm-socials-link:not(:hover) { opacity: 0.35; }
-.sm-scope .sm-socials-list:focus-within .sm-socials-link:not(:focus-visible) { opacity: 0.35; }
-.sm-scope .sm-socials-list .sm-socials-link:hover,
-.sm-scope .sm-socials-list .sm-socials-link:focus-visible { opacity: 1; }
+.sm-scope .sm-socials-list .sm-socials-link { opacity: 1; transition: opacity 0.3s ease, transform 0.3s ease; }
 .sm-scope .sm-socials-link:focus-visible { outline: 2px solid var(--sm-accent, #ff0000); outline-offset: 3px; }
-.sm-scope .sm-socials-link { font-size: 1.2rem; font-weight: 500; color: #111; text-decoration: none; position: relative; padding: 2px 0; display: inline-block; transition: color 0.3s ease, opacity 0.3s ease; }
-.sm-scope .sm-socials-link:hover { color: var(--sm-accent, #ff0000); }
+.sm-scope .sm-socials-link { text-decoration: none; transition: opacity 0.3s ease, transform 0.3s ease; }
 .sm-scope .sm-panel-title { margin: 0; font-size: 1rem; font-weight: 600; color: #fff; text-transform: uppercase; }
 .sm-scope .sm-panel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
 .sm-scope .sm-panel-item { position: relative; color: #000; font-weight: 600; font-size: clamp(1.75rem, 8vw, 4rem); cursor: pointer; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; transition: background 0.25s, color 0.25s; display: inline-block; text-decoration: none; padding-right: 1.2em; }
@@ -587,6 +596,3 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 };
 
 export default StaggeredMenu;
-
-
-

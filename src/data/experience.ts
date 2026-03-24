@@ -9,12 +9,12 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem = {
   company: "One Place Solar",
-  location: "Agra, Uttar Pradesh",
+  location: "Agra, UP",
   dateRange: "Jul 2025 - Jan 2026",
-  role: "SDE - Intern",
+  role: "Software Development Engineer - Intern",
   highlights: [
-    "Contributed to the development of an in-house CRM system and internal tools by working on feature design, implementation, and UI integration.",
-    "Gained hands-on experience in full-stack development while collaborating with cross-functional teams and following industry best practices.",
+    "Worked on the development of an in-house CRM system and internal tools used for day-to-day business operations.",
+    "Designed and implemented core features while gaining practical experience in full-stack development and team collaboration.",
   ],
-  tags: ["React.js", "Node.js", "MongoDB", "Express.js", "Tailwind CSS", "REST APIs"],
+  tags: ["CRM Systems", "Internal Tools", "React.js", "Node.js", "MongoDB", "Team Collaboration"],
 };
