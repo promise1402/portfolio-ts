@@ -144,13 +144,13 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
         ref={listRef}
         className={`max-h-[320px] sm:max-h-[400px] overflow-y-auto p-4 ${
           displayScrollbar
-            ? "[&::-webkit-scrollbar]:w-[8px] [&::-webkit-scrollbar-track]:bg-[#060010] [&::-webkit-scrollbar-thumb]:bg-[#222] [&::-webkit-scrollbar-thumb]:rounded-[4px]"
+            ? "[&::-webkit-scrollbar]:w-[8px] [&::-webkit-scrollbar-track]:bg-sky-50 [&::-webkit-scrollbar-thumb]:bg-sky-200 [&::-webkit-scrollbar-thumb]:rounded-[999px] [&::-webkit-scrollbar-thumb]:border-[2px] [&::-webkit-scrollbar-thumb]:border-sky-50"
             : "scrollbar-hide"
         }`}
         onScroll={handleScroll}
         style={{
           scrollbarWidth: displayScrollbar ? "thin" : "none",
-          scrollbarColor: "#222 #060010",
+          scrollbarColor: "#7dd3fc #f0f9ff",
         }}
       >
         {items.map((item, index) => (
@@ -162,11 +162,13 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
             onClick={() => handleItemClick(item, index)}
           >
             <div
-              className={`p-4 bg-black/70 backdrop-blur-sm border border-gray-800/50 rounded-lg transition-all duration-200 hover:bg-black/90 hover:shadow-lg ${
-                selectedIndex === index ? "ring-2 ring-sky-400 bg-black/95 shadow-xl" : ""
+              className={`rounded-2xl border border-sky-100/90 bg-linear-to-br from-sky-50 via-white to-blue-50/80 p-4 backdrop-blur-sm transition-all duration-200 hover:border-sky-200 hover:from-sky-100 hover:to-blue-100/80 hover:shadow-lg ${
+                selectedIndex === index
+                  ? "ring-2 ring-sky-300 border-sky-300 bg-linear-to-br from-sky-100 via-blue-50 to-indigo-100/80 shadow-xl"
+                  : ""
               } ${itemClassName}`}
             >
-              <p className="text-white m-0 font-medium break-words">{item}</p>
+              <p className="m-0 break-words font-medium text-slate-700">{item}</p>
             </div>
           </AnimatedItem>
         ))}
@@ -175,11 +177,11 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
       {showGradients && (
         <>
           <div
-            className="absolute top-0 left-0 right-0 h-[40px] bg-gradient-to-b from-[#060010] to-transparent pointer-events-none transition-opacity duration-300 ease"
+            className="absolute top-0 left-0 right-0 h-[40px] bg-gradient-to-b from-sky-50 to-transparent pointer-events-none transition-opacity duration-300 ease"
             style={{ opacity: topGradientOpacity }}
           />
           <div
-            className="absolute bottom-0 left-0 right-0 h-[80px] bg-gradient-to-t from-[#060010] to-transparent pointer-events-none transition-opacity duration-300 ease"
+            className="absolute bottom-0 left-0 right-0 h-[80px] bg-gradient-to-t from-sky-50 to-transparent pointer-events-none transition-opacity duration-300 ease"
             style={{ opacity: bottomGradientOpacity }}
           />
         </>

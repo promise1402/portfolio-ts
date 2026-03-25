@@ -3,10 +3,14 @@ import { AnimatedList, FlowingMenu, Shuffle } from "@/components/animations";
 import { skills } from "@/data/skill";
 
 const Skills = () => {
-  const [openCategory, setOpenCategory] = useState<number | null>(null);
+  const [openCategories, setOpenCategories] = useState<number[]>([]);
 
   const toggleCategory = (categoryId: number) => {
-    setOpenCategory(openCategory === categoryId ? null : categoryId);
+    setOpenCategories((current) =>
+      current.includes(categoryId)
+        ? current.filter((id) => id !== categoryId)
+        : [...current, categoryId]
+    );
   };
 
   return (
@@ -41,11 +45,15 @@ const Skills = () => {
 
         <div className="w-full space-y-2">
           {skills.map((category) => {
-            const isOpen = openCategory === category.id;
+            const isOpen = openCategories.includes(category.id);
             return (
               <div key={category.id} className="w-full overflow-hidden rounded-2xl">
                 <div
-                  className="cursor-pointer transition-all duration-300 border border-gray-200/70 rounded-2xl hover:border-indigo-300/80 hover:shadow-md flex items-center"
+                  className={`flex items-center rounded-2xl border transition-all duration-300 ${
+                    isOpen
+                      ? "border-sky-300/90 shadow-md shadow-sky-100/70"
+                      : "border-gray-200/70 hover:border-indigo-300/80 hover:shadow-md"
+                  }`}
                   style={{
                     height: "82px",
                     position: "relative",
@@ -77,11 +85,11 @@ const Skills = () => {
                 <div
                   className={`overflow-hidden transition-all duration-700 ease-out ${
                     isOpen
-                      ? "max-h-150 opacity-100 py-1 px-1 bg-linear-to-b from-slate-50 to-white"
+                      ? "max-h-150 opacity-100 px-1 py-1.5 bg-linear-to-b from-sky-50 via-blue-50/60 to-white"
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <div className="w-full h-full min-h-5">
+                  <div className="min-h-5 w-full h-full rounded-2xl border border-sky-100/80 bg-white/80">
                     <AnimatedList
                       items={category.skills}
                       onItemSelect={(item, index) => console.log(item, index)}

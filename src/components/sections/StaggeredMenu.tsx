@@ -134,8 +134,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
     if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 });
     if (numberEls.length) gsap.set(numberEls, { ['--sm-num-opacity' as any]: 0 });
-    if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
-    if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
+    if (socialTitle) gsap.set(socialTitle, { autoAlpha: 0 });
+    if (socialLinks.length) gsap.set(socialLinks, { y: 25, autoAlpha: 0 });
 
     const tl = gsap.timeline({ paused: true });
 
@@ -176,18 +176,18 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     if (socialTitle || socialLinks.length) {
       const socialsStart = panelInsertTime + panelDuration * 0.4;
 
-      if (socialTitle) tl.to(socialTitle, { opacity: 1, duration: 0.5, ease: 'power2.out' }, socialsStart);
+      if (socialTitle) tl.to(socialTitle, { autoAlpha: 1, duration: 0.5, ease: 'power2.out' }, socialsStart);
       if (socialLinks.length) {
         tl.to(
           socialLinks,
           {
             y: 0,
-            opacity: 1,
+            autoAlpha: 1,
             duration: 0.55,
             ease: 'power3.out',
             stagger: { each: 0.08, from: 'start' },
             onComplete: () => {
-              gsap.set(socialLinks, { clearProps: 'opacity' });
+              gsap.set(socialLinks, { clearProps: 'opacity,visibility,transform' });
             }
           },
           socialsStart + 0.04
@@ -243,8 +243,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
         const socialTitle = panel.querySelector('.sm-socials-title') as HTMLElement | null;
         const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link')) as HTMLElement[];
-        if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
-        if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
+        if (socialTitle) gsap.set(socialTitle, { autoAlpha: 0 });
+        if (socialLinks.length) gsap.set(socialLinks, { y: 25, autoAlpha: 0 });
 
         busyRef.current = false;
       }
@@ -497,7 +497,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 items.map((it, idx) => (
                   <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={it.label + idx}>
                     <a
-                      className="sm-panel-item relative text-black font-semibold text-[clamp(1.75rem,8vw,4rem)] cursor-pointer leading-none tracking-tight uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.2em] sm:pr-[1.4em]"
+                      className={`sm-panel-item relative text-black font-semibold text-[clamp(1.75rem,6vw,3.5rem)] cursor-pointer leading-none tracking-tight uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline ${
+                        displayItemNumbering ? "pr-[1.2em] sm:pr-[1.4em]" : ""
+                      }`}
                       href={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
@@ -511,7 +513,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 ))
               ) : (
                 <li className="sm-panel-itemWrap relative overflow-hidden leading-none" aria-hidden="true">
-                  <span className="sm-panel-item relative text-black font-semibold text-[clamp(1.75rem,8vw,4rem)] cursor-pointer leading-none tracking-tight uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.2em] sm:pr-[1.4em]">
+                  <span
+                    className={`sm-panel-item relative text-black font-semibold text-[clamp(1.75rem,6vw,3.5rem)] cursor-pointer leading-none tracking-tight uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline ${
+                      displayItemNumbering ? "pr-[1.2em] sm:pr-[1.4em]" : ""
+                    }`}
+                  >
                     <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                       No items
                     </span>
@@ -568,28 +574,28 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
-.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: min(100vw, clamp(260px, 38vw, 420px)); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 5.25em 1.25em 1.5em 1.25em; overflow-y: auto; z-index: 10; }
+.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: min(100vw, clamp(300px, 42vw, 480px)); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 5.25em 1.25em 1.5em 1.25em; overflow-y: auto; z-index: 10; }
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
-.sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: min(100vw, clamp(260px, 38vw, 420px)); pointer-events: none; z-index: 5; }
+.sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: min(100vw, clamp(300px, 42vw, 480px)); pointer-events: none; z-index: 5; }
 .sm-scope [data-position='left'] .sm-prelayers { right: auto; left: 0; }
 .sm-scope .sm-prelayer { position: absolute; top: 0; right: 0; height: 100%; width: 100%; transform: translateX(0); }
 .sm-scope .sm-panel-inner { flex: 1; display: flex; flex-direction: column; gap: 1.25rem; }
 .sm-scope .sm-socials { margin-top: auto; padding-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
 .sm-scope .sm-socials-title { margin: 0; font-size: 1rem; font-weight: 500; color: var(--sm-accent, #ff0000); }
 .sm-scope .sm-socials-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: row; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.sm-scope .sm-socials-list .sm-socials-link { opacity: 1; transition: opacity 0.3s ease, transform 0.3s ease; }
+.sm-scope .sm-socials-list .sm-socials-link { opacity: 1; visibility: visible; transition: opacity 0.3s ease, transform 0.3s ease; }
 .sm-scope .sm-socials-link:focus-visible { outline: 2px solid var(--sm-accent, #ff0000); outline-offset: 3px; }
 .sm-scope .sm-socials-link { text-decoration: none; transition: opacity 0.3s ease, transform 0.3s ease; }
 .sm-scope .sm-panel-title { margin: 0; font-size: 1rem; font-weight: 600; color: #fff; text-transform: uppercase; }
 .sm-scope .sm-panel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
-.sm-scope .sm-panel-item { position: relative; color: #000; font-weight: 600; font-size: clamp(1.75rem, 8vw, 4rem); cursor: pointer; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; transition: background 0.25s, color 0.25s; display: inline-block; text-decoration: none; padding-right: 1.2em; }
+.sm-scope .sm-panel-item { position: relative; color: #000; font-weight: 600; font-size: clamp(1.75rem, 6vw, 3.5rem); cursor: pointer; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; transition: background 0.25s, color 0.25s; display: inline-block; text-decoration: none; }
 .sm-scope .sm-panel-itemLabel { display: inline-block; will-change: transform; transform-origin: 50% 100%; }
 .sm-scope .sm-panel-item:hover { color: var(--sm-accent, #ff0000); }
 .sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }
 .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { counter-increment: smItem; content: counter(smItem, decimal-leading-zero); position: absolute; top: 0.1em; right: 1.8em; font-size: clamp(0.75rem, 2.8vw, 1.125rem); font-weight: 400; color: var(--sm-accent, #ff0000); letter-spacing: 0; pointer-events: none; user-select: none; opacity: var(--sm-num-opacity, 0); }
 @media (min-width: 640px) { .sm-scope .staggered-menu-panel { padding: 6em 2em 2em 2em; } }
 @media (max-width: 1024px) { .sm-scope .staggered-menu-panel, .sm-scope .sm-prelayers { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } }
-@media (max-width: 640px) { .sm-scope .staggered-menu-panel, .sm-scope .sm-prelayers { width: 100%; left: 0; right: 0; } .sm-scope .sm-panel-item { padding-right: 1.1em; } .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { right: 1.4em; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } }
+@media (max-width: 640px) { .sm-scope .staggered-menu-panel, .sm-scope .sm-prelayers { width: 100%; left: 0; right: 0; } .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { right: 1.4em; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } }
       `}</style>
     </div>
   );
